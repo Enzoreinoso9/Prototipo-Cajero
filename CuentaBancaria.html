@@ -1,0 +1,100 @@
+<html>
+
+<script>
+
+    /*-Crea un sistema que modele una cuenta bancaria. Implementa metodos para depositar, retirar y consultar saldo,asegurandote de que los datos sensibles esten encapsulados y protegidos.*/
+
+
+    class CuentaBancaria{
+
+        constructor(username, claveCuenta, saldo){
+
+            this.usuario=username;
+            this.clave = claveCuenta;
+            this.saldo = saldo;
+        }
+
+        autenticarUsuario(){
+
+            let username = prompt("Por favor, ingresar usuario.");
+
+            if (username === this.usuario) {
+
+                let clave = prompt("Ingresa clave");
+
+                if (clave === this.clave) {
+
+                    alert(`¡Bienvenido!, ${this.usuario}`);
+
+                    return true;
+                    
+                }else{
+
+                    alert("Clave incorrecta, por favor intentalo de nuevo");
+                    
+                }
+                
+            }else{
+
+                alert("Usuario incorrecto, por favor intentalo de nuevo.");
+                return false;
+                
+            }
+
+
+        }
+
+        depositarSaldo(){
+
+            let monto= parseInt(prompt("Ingresa el monto a depositar"));
+
+            let montoIngresado = parseInt(this.saldo) + monto;
+
+            document.write(`Tu saldo actual ahora es de: $ ${montoIngresado}`);
+        }
+
+        retirarSaldo(){
+
+            let monto = parseInt(prompt("Ingresa el monto que deseas retirar"));
+
+            let montoRetirado = parseInt(this.saldo) - monto;
+
+            document.write(`Se retiro ${monto}. <br>`);
+            document.write(`Tu saldo actual ahora es de ${montoRetirado}`);
+
+        }
+
+        consultarSaldo(){
+
+            document.write(`Tu saldo actual es de ${this.saldo}`);
+        }
+    }
+
+    const cuenta = new CuentaBancaria("enzoreinoso9", "1999", 24000 );
+
+    const ingresoUsuario = cuenta.autenticarUsuario();
+
+if (ingresoUsuario) {
+
+    let opciones = prompt("¿Que opcion deseas realizar?: 1- Depositar 2- Retirar 3- Consultar");
+
+    if (opciones === "1") {
+
+        cuenta.depositarSaldo();
+        
+    }else if (opciones === "2") {
+
+        cuenta.retirarSaldo();
+        
+    }else if (opciones === "3"){
+
+        cuenta.consultarSaldo();
+    }else{
+
+        alert("No ingresaste ninguna opción.");
+    }
+    
+}
+
+</script>
+</html>
